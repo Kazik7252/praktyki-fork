@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TopicController;
 use App\Http\Controllers\ArticleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -19,11 +20,14 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::get('/articles', [ArticleController::class, 'listArticles']);
 
-Route::get('/articles/{id}', [ArticleController::class, 'readArticle']);
+// TOPICS
+Route::get('/topics', [TopicController::class, 'listTopics']);
 
-Route::delete('/articles/{id}', [ArticleController::class, 'deleteArticle']);
+Route::get('/topics/{id}', [TopicController::class, 'readTopic']);
 
-Route::post('/articles', [ArticleController::class, 'createArticle']);
+Route::delete('/topics/{id}', [TopicController::class, 'deleteTopic']);
 
+Route::post('/topics', [TopicController::class, 'createTopic']);
+
+// TODO ARTICLES

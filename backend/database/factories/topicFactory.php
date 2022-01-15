@@ -3,9 +3,8 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
-class ArticleFactory extends Factory
+class TopicFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -14,8 +13,11 @@ class ArticleFactory extends Factory
      */
     public function definition()
     {
+        //Wpisuje lorem ipsum i przykładowe dane do tabeli
         return [
-            'body' => $this->faker->paragraphs(2, true)
+            
+            'title' => $this->faker->unique()->sentence(),
+            'created_at' => now()
         ];
     }
 }
