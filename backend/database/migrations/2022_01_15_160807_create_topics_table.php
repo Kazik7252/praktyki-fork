@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateArticlesTable extends Migration
+class CreateTopicsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateArticlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
-            $table->id();
+        //Tworzy tabelę o określonej strukturze
+        Schema::create('topics', function (Blueprint $table) {
+            $table->increments('id');
             $table->foreignId('user_id');
-            $table->foreignId('topic_id');
-            $table->text('body');
+            $table->string('title');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateArticlesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('artiles');
+        Schema::dropIfExists('topics');
     }
 }
