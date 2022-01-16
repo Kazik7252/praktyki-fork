@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TopicController;
 
-use app\Http\Controllers\RegisterCotroller;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,4 +21,5 @@ Route::get('/', function () {
 });
 
 
-Route::get('register', [RegisterController::class, 'create']);
+// Route::get('/register', [RegisterController::class, 'create']);
+// Route::post('register',[RegisterController::class, 'store']);
