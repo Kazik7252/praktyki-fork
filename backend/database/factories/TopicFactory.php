@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\User;
 
 class TopicFactory extends Factory
 {
@@ -15,7 +16,7 @@ class TopicFactory extends Factory
     {
         //Wpisuje lorem ipsum i przykładowe dane do tabeli
         return [
-            
+            'user_id' => User::factory(),
             'title' => $this->faker->unique()->sentence(),
             'created_at' => now()
         ];

@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Topic;
-use App\Models\Article;
+use App\Models\Post;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,15 +17,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        $user = User::factory()->create();
-        $user2 = User::factory()->create();
+        User::factory(2)->create();
+        Topic::factory(3)->create();
+        Post::factory(4)->create();
 
-        $topic = Topic::factory()->create(['user_id' => $user->id]);
-        $topic2 = Topic::factory()->create(['user_id' => $user2->id]);
-        
-        Article::factory()->create(['user_id' => $user->id, 'topic_id' => $topic2->id]);
-        Article::factory()->create(['user_id' => $user2->id, 'topic_id' => $topic->id]);
-        Article::factory()->create(['user_id' => $user->id, 'topic_id' => $topic->id]);
-        Article::factory()->create(['user_id' => $user2->id, 'topic_id' => $topic2->id]);
     }
 }

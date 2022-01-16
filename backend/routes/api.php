@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\TopicController;
-use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\PostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,10 +24,21 @@ use Illuminate\Support\Facades\Route;
 // TOPICS
 Route::get('/topics', [TopicController::class, 'listTopics']);
 
-Route::get('/topics/{id}', [TopicController::class, 'readTopic']);
+Route::get('/topics/{topic_id}', [TopicController::class, 'readTopic']);
 
-Route::delete('/topics/{id}', [TopicController::class, 'deleteTopic']);
+Route::delete('/topics/{topic_id}', [TopicController::class, 'deleteTopic']);
 
+//Przyjmuje wartości title, user_id
 Route::post('/topics', [TopicController::class, 'createTopic']);
 
-// TODO ARTICLES
+// TODO Group Topics 
+// for example topics created by specified user based on user_id
+
+
+// POSTS
+Route::get('/posts/{post_id}', [PostController::class, 'readPost']);
+
+Route::delete('/posts/{post_id}', [PostController::class, 'deletePost']);
+
+// Przyjmuje wartości body, user_id, topic_id
+Route::post('/posts', [PostController::class, 'submitPost']);

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Article;
+use App\Models\Post;
 use App\Models\Topic;
 use Illuminate\Http\Request;
 
@@ -23,19 +23,23 @@ class TopicController extends Controller
 
     public function readTopic(Request $request)
     {
-        // Pobiera rekord z tabeli Topics o podanym id oraz wszystkie odpowiadające mu rekordy z tabeli Articles
-        $topic = Topic::where('id', $request->id)->with('topicAuthor');
+        // Pobiera rekord z tabeli Topics o podanym id oraz wszystkie odpowiadające mu rekordy z tabeli Posts
+        $topic = Topic::where('id', $request->topic_id)->with('topicAuthor');
 
-        $articles = Article::where('topic_id',$request->id)->orderBy('created_at', 'DESC');
+        $posts = Post::where('topic_id',$request->topic_id)->with('postAuthor')->orderBy('created_at', 'DESC');
 
-        return response(['topic' => $topic->get(), 'articles' => $articles->get()], 200);
+        //TODO to nie działa XD
+        // if ($topic == [])
+        //     return response(['message' => "The topic doesn't exist"], 204);
+        
+        return response(['topic' => $topic->get(), 'posts' => $posts->get()], 200);
     }
 
     public function deleteTopic(Request $request)
     {
         // Pobiera rekord z tabeli Topics z id podanym w ścieżce
-        $topic = Topic::where('id', $request->id)->delete();
-
+        $topic = Topic::where('id', $request->topic_id)->delete();
+        $post = Post::where('topic_id', $request->topic_id)->delete();
         return response(['message' => 'The topic has been deleted.'], 200);
     }
 
