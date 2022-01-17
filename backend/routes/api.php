@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\PostController;
 use Illuminate\Http\Request;
@@ -21,24 +22,31 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-// TOPICS
+//              ----------------TOPICS----------------
 Route::get('/topics', [TopicController::class, 'listTopics']);
 
-Route::get('/topics/{topic_id}', [TopicController::class, 'readTopic']);
+Route::get('/topics/by-topic-id/{topic_id}', [TopicController::class, 'readTopicByTopicId']);
 
-Route::delete('/topics/{topic_id}', [TopicController::class, 'deleteTopic']);
+// Zwraca dane o poście oraz o topicu w którym się znajduje
+Route::get('/topics/by-post-id/{post_id}', [TopicController::class, 'readTopicByPostId']);
+
+// Zwraca dane użytkownika oraz informacje o wszystkich topicach
+Route::get('/topics/by-user-id/{user_id}', [TopicController::class, 'readTopicsByUserId']);
+
+Route::delete('/topics/by-topic-id/{topic_id}', [TopicController::class, 'deleteTopic']);
 
 //Przyjmuje wartości title, user_id
 Route::post('/topics', [TopicController::class, 'createTopic']);
 
-// TODO Group Topics 
-// for example topics created by specified user based on user_id
 
+//              ----------------POSTS----------------
+Route::get('/posts/by-post-id/{post_id}', [PostController::class, 'readPost']);
 
-// POSTS
-Route::get('/posts/{post_id}', [PostController::class, 'readPost']);
-
-Route::delete('/posts/{post_id}', [PostController::class, 'deletePost']);
+Route::delete('/posts/by-post-id/{post_id}', [PostController::class, 'deletePost']);
 
 // Przyjmuje wartości body, user_id, topic_id
 Route::post('/posts', [PostController::class, 'submitPost']);
+
+
+// TODO         ----------------USERS----------------
+// Route::post('/user/register', [UserController::class, 'storeRegisterData']);

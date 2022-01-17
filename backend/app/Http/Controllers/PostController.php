@@ -10,7 +10,7 @@ class PostController extends Controller
     //TODO Post Methods
     public function readPost(Request $request)
     {
-        $post = Post::where('id',$request->post_id)->with('postAuthor');
+        $post = Post::where('id',$request->post_id)->with('postAuthor','motherTopic');
 
         return response(['post' => $post->get()], 200);
     }

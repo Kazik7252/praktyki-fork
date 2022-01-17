@@ -9,10 +9,15 @@ class Topic extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];  
+    protected $guarded = [];
 
     public function topicAuthor()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+
+    //TODO określenie relacji między pozostałymi obiektami
+
+
 }

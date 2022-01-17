@@ -17,9 +17,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        User::factory(2)->create();
-        Topic::factory(3)->create();
-        Post::factory(4)->create();
+        User::factory()->create();
+        Topic::factory()->create();
+        Post::factory(6)->create();
 
     }
 }
