@@ -43,7 +43,7 @@ class User extends Authenticatable
     ];
 
 
-    //  ----------------RELATIONS----------------
+    //   ----------------RELATIONS----------------
     public function topics()
     {
         return $this->hasMany(Topic::class);

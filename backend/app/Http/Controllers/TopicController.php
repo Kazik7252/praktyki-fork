@@ -16,7 +16,7 @@ class TopicController extends Controller
         $topics = Topic::with('topicAuthor')->orderBy('created_at', 'DESC');
 
         // Filtrowanie rekordów
-        if($request->search)
+        if ($request->search)
             $topics->where('title', 'like', '%' . $request->search . '%');
 
         return response(['topics' => $topics->get()], 200);
@@ -24,20 +24,26 @@ class TopicController extends Controller
 
     public function readTopicByTopicId(Request $request)
     {
+        ddd($request);
+        if (!$request->topic_id)
+            return response(['message' => 'Topic ID cannot be null'], 404);
+
         // Pobiera rekord z tabeli Topics o podanym id oraz wszystkie odpowiadające mu rekordy z tabeli Posts
         $topic = Topic::where('id', $request->topic_id)->with('topicAuthor');
 
-        $posts = Post::where('topic_id',$request->topic_id)
-                            ->with('postAuthor')
-                            ->orderBy('created_at', 'DESC');
+        $posts = Post::where('topic_id', $request->topic_id)
+            ->with('postAuthor')
+            ->orderBy('created_at', 'DESC');
 
-        //TODO to nie działa XD
-        // if ($topic->get() == [])
-        //     return response(['message' => "The topic doesn't exist"], 204);
+        if (!$topic->first())
+            return response(['message' => "The topic doesn't exist"], 204);
 
-        return response(
-        ['topic' => $topic->get(),
-         'posts' => $posts->get()], 200);
+        return response([
+                'topic' => $topic->get(),
+                'posts' => $posts->get()
+            ],
+            200
+        );
     }
 
     public function readTopicByPostId(Request $request)
@@ -47,28 +53,35 @@ class TopicController extends Controller
 
         $post = Post::where('id', $request->post_id)->with('motherTopic');
 
+        if (!$post->first())
+            return response(['Message' => "This post doesn't exist"],204);
+
         return response(['posts' => $post->get()], 200);
         // return response(['Message' => 'This API is not released yet'], 404);
     }
 
     public function readTopicsByUserId(Request $request)
     {
-        $user = User::where('id',$request->user_id)->with('topics');
+        $user = User::where('id', $request->user_id)->with('topics');
 
-        return response(['user' => $user->get()] , 200);
+        if (!$user->first())
+            return response(['Message' => 'This user does not exist'], 204);
+
+        return response(['user' => $user->get()], 200);
     }
 
     public function deleteTopic(Request $request)
     {
         // Pobiera rekord z tabeli Topics z id podanym w ścieżce
-        $topic = Topic::where('id', $request->topic_id)->delete();
+        Topic::where('id', $request->topic_id)->delete();
 
-        $post = Post::where('topic_id', $request->topic_id)->delete();
+        Post::where('topic_id', $request->topic_id)->delete();
 
         return response(['message' => 'The topic has been successfully deleted.'], 200);
     }
 
-    public function createTopic(Request $request) {
+    public function createTopic(Request $request)
+    {
 
         //Sprawdzanie czy podane dane spełniają wymagania
         $request->validate([
@@ -77,7 +90,7 @@ class TopicController extends Controller
         ]);
 
         // Wpisuje do tabeli dane podane przez klienta
-        $user = Topic::create([
+        Topic::create([
             'title' => $request->title,
             'user_id' => $request->user_id,
         ]);

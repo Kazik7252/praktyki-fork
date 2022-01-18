@@ -11,13 +11,9 @@ class Topic extends Model
 
     protected $guarded = [];
 
+    //        ----------------RELATIONS----------------
     public function topicAuthor()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-
-
-    //TODO określenie relacji między pozostałymi obiektami
-
-
 }

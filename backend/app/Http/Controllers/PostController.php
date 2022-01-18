@@ -10,7 +10,7 @@ class PostController extends Controller
     //TODO Post Methods
     public function readPost(Request $request)
     {
-        $post = Post::where('id',$request->post_id)->with('postAuthor','motherTopic');
+        $post = Post::where('id', $request->post_id)->with('postAuthor', 'motherTopic');
 
         return response(['post' => $post->get()], 200);
     }
@@ -38,5 +38,4 @@ class PostController extends Controller
 
         return response(['message' => 'The post has been successfully created'], 201);
     }
-
 }

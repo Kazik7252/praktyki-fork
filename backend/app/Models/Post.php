@@ -11,6 +11,8 @@ class Post extends Model
 
     protected $guarded = [];
 
+
+    //    ----------------RELATIONS----------------
     public function postAuthor()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -20,5 +22,4 @@ class Post extends Model
     {
         return $this->belongsTo(Topic::class, 'topic_id');
     }
-
 }
