@@ -2,20 +2,49 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class RegisterController extends Controller
+class UserController extends Controller
 {
-    public function storeRegisterData()
+    public function store(Request $request)
     {
     // var_dumb(request()->all());
 
-         $reg = request() ->validate([
+        $request ->validate([
               'username'          => 'required|min:3|max:255',
               'email'             => 'required|email',
               'password'          => 'required_with:confirm_password|same:confirm_password|min:8|max:255',
               'confirm_password'  => 'required|min:8|max:255|'
         ]);
-        return response(['reg' => $reg],200);
+
+        $request ['password'] = bcrypt($request['password']);
+
+        $user =  User::create([
+            'username'            => $request->username,
+            'email'               => $request->email,
+            'password'            => $request->password,
+        ]);
+
+        auth()->login($user);
+
+        return response(['user' => $user],201);
+    }
+
+    public function login(Request $request)
+    {
+        $request -> validate([
+            'username'  => 'required',
+            'password'  => 'required'
+        ]);
+
+        $userdata = array(
+            'username' => $request -> username,
+            'password' => $request -> password
+        );
+
+        Auth::attempt($userdata);
+
     }
 }

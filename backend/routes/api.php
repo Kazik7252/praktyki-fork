@@ -3,6 +3,7 @@
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SessionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -49,4 +50,14 @@ Route::post('/posts', [PostController::class, 'submitPost']);
 
 
 // TODO         ----------------USERS----------------
-// Route::post('/user/register', [UserController::class, 'storeRegisterData']);
+Route::post('/user/register', [UserController::class, 'store']);
+
+// Porównywanie ### hasła do tego w bazie danych przy logowaniu.
+// Illuminate/Support/Facades/Hash::check('password'), $"username"->"password");
+// Zwraca true or false
+
+Route::get('/user/login', [UserController::class, 'login']);
+
+Route::post('/user/logout', [SessionController::class, 'destroy']);
+
+
