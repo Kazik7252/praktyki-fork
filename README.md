@@ -25,10 +25,7 @@ Aby uruchomić projekt:
 1. Po zakończeniu instalacji aplikacja powinna być dostępna na dwóch adresach:
     - http://localhost:8900 - frontend
     - http://localhost:8899 - backend
-
-## Szczegóły dotyczące frontendu
-
-TODO - Kasper
+    - http://localhost:8898 - baza danych MariaDB
 
 ## Szczegóły dotyczące backendu
 
