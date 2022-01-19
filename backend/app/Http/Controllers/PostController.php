@@ -22,7 +22,7 @@ class PostController extends Controller
         return response(['message' => 'The post has been successfully deleted'], 200);
     }
 
-    public function submitPost(Request $request)
+    public function createPost(Request $request)
     {
         $request->validate([
             'body' => 'required|string',

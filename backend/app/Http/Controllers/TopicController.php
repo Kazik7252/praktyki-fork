@@ -24,10 +24,6 @@ class TopicController extends Controller
 
     public function readTopicByTopicId(Request $request)
     {
-        ddd($request);
-        if (!$request->topic_id)
-            return response(['message' => 'Topic ID cannot be null'], 404);
-
         // Pobiera rekord z tabeli Topics o podanym id oraz wszystkie odpowiadające mu rekordy z tabeli Posts
         $topic = Topic::where('id', $request->topic_id)->with('topicAuthor');
 

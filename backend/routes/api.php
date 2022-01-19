@@ -3,6 +3,7 @@
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SessionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,12 +31,12 @@ Route::get('/topics/by-topic-id/{topic_id}', [TopicController::class, 'readTopic
 // Zwraca dane o poście oraz o topicu w którym się znajduje
 Route::get('/topics/by-post-id/{post_id}', [TopicController::class, 'readTopicByPostId']);
 
-// Zwraca dane użytkownika oraz informacje o wszystkich topicach
+// Zwraca dane użytkownika oraz informacje o jego wszystkich topicach
 Route::get('/topics/by-user-id/{user_id}', [TopicController::class, 'readTopicsByUserId']);
 
 Route::delete('/topics/by-topic-id/{topic_id}', [TopicController::class, 'deleteTopic']);
 
-//Przyjmuje wartości title, user_id
+//Przyjmuje parametry title, user_id
 Route::post('/topics', [TopicController::class, 'createTopic']);
 
 
@@ -44,9 +45,20 @@ Route::get('/posts/by-post-id/{post_id}', [PostController::class, 'readPost']);
 
 Route::delete('/posts/by-post-id/{post_id}', [PostController::class, 'deletePost']);
 
-// Przyjmuje wartości body, user_id, topic_id
-Route::post('/posts', [PostController::class, 'submitPost']);
+// Przyjmuje parametry body, user_id, topic_id
+Route::post('/posts', [PostController::class, 'createPost']);
 
 
 // TODO         ----------------USERS----------------
-// Route::post('/user/register', [UserController::class, 'storeRegisterData']);
+Route::post('/user/register', [UserController::class, 'registerUser']);
+
+// Porównywanie ### hasła do tego w bazie danych przy logowaniu.
+// Illuminate/Support/Facades/Hash::check('password'), $"username"->"password");
+// Zwraca true or false
+
+// Logowanie i wylogowywanie użytkownika
+Route::get('/user/login', [UserController::class, 'login']);
+
+Route::post('/user/logout', [UserController::class, 'logout']);
+
+

@@ -15,8 +15,8 @@ class CreateTopicsTable extends Migration
     {
         //Tworzy tabelę o określonej strukturze
         Schema::create('topics', function (Blueprint $table) {
-            $table->increments('id');
-            $table->foreignId('user_id');
+            $table->id();
+            $table->foreignId('user_id')->constrained('users');
             $table->string('title')->unique();
             $table->timestamps();
         });
