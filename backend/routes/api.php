@@ -3,7 +3,6 @@
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\SessionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,9 +17,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+// TODO         ----------------USERS----------------
+Route::post('/user/register', [UserController::class, 'registerUser']);
+
+// Porównywanie ### hasła do tego w bazie danych przy logowaniu.
+// Illuminate/Support/Facades/Hash::check('password'), $"username"->"password");
+// Zwraca true or false
+
+// Logowanie i wylogowywanie użytkownika
+Route::get('/user/login', [UserController::class, 'login']);
+
+Route::post('/user/logout', [UserController::class, 'logout']);
 
 
 //              ----------------TOPICS----------------
@@ -47,18 +58,3 @@ Route::delete('/posts/by-post-id/{post_id}', [PostController::class, 'deletePost
 
 // Przyjmuje parametry body, user_id, topic_id
 Route::post('/posts', [PostController::class, 'createPost']);
-
-
-// TODO         ----------------USERS----------------
-Route::post('/user/register', [UserController::class, 'registerUser']);
-
-// Porównywanie ### hasła do tego w bazie danych przy logowaniu.
-// Illuminate/Support/Facades/Hash::check('password'), $"username"->"password");
-// Zwraca true or false
-
-// Logowanie i wylogowywanie użytkownika
-Route::get('/user/login', [UserController::class, 'login']);
-
-Route::post('/user/logout', [UserController::class, 'logout']);
-
-

@@ -3,13 +3,13 @@
 	import Card from './components/Card.svelte'
 
 	let name = ':)';
-	let articles = [];
+	let topics = [];
 	onMount(async () => {
 		try{
-		const response = await fetch('http://localhost:8899/api/articles');
+		const response = await fetch('http://localhost:8899/api/topics');
 		const data = await response.json();
-		console.log(data.articles);
-		articles = data.articles;
+		console.log(data.topics);
+		topics = data.topics;
 		} catch(error){
 			console.log(error)
 		}
@@ -22,18 +22,18 @@
 	<h1>siemka {name} !</h1>
 	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
 	
-	{#each articles as article}
+	{#each topics as topic}
 	<div>
 		<Card>
 			<div class="title">
-				<h3>{article.title}</h3>
+				<h3>{topic.title}</h3>
 			</div>
 			<div class="author">
-				<h4>Author: {article.author.name}</h4>
+				<h4>Author: {topic.topic_author.username}</h4>
 			</div>
-			<div class="content">
-				<p>{article.body}</p>
-			</div>
+			<!-- <div class="content">
+				<p>{topic.body}</p>
+			</div> -->
 		</Card>
 	</div>
 	{/each}
@@ -75,8 +75,8 @@
 		font-weight: 200;
 		margin: 0.5em;
 	}
-	.content{
+	/* .content{
 		margin: 0.5em;
 		text-align: left;
-	}
+	} */
 </style>

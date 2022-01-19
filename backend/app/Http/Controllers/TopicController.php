@@ -52,8 +52,8 @@ class TopicController extends Controller
         if (!$post->first())
             return response(['Message' => "This post doesn't exist"],204);
 
-        return response(['posts' => $post->get()], 200);
-        // return response(['Message' => 'This API is not released yet'], 404);
+        // return response(['posts' => $post->get()], 200);
+        return response(['Message' => 'This API is not released yet'], 404);
     }
 
     public function readTopicsByUserId(Request $request)
