@@ -37,17 +37,25 @@ class UserController extends Controller
             'password'  => 'required'
         ]);
 
-        $user = User::where('username', $request->username);
+        $user = User::where('username', $request->username)->first();
 
-        if (Hash::check($user['password'], $request->password))
-            $user->createToken();
+        if (Hash::check($request->password, $user->password)) {
+            $token = $user->createToken('kekw')->plainTextToken;
 
-
+            $response = [
+                'user' => $user,
+                'token' => $token
+            ];
+            return response($response, 200);
+            } else {
+                return response(['Message' => 'Invalid credentials'] ,401);
+            }
     }
 
     public function logout()
     {
-        //$user->tokens()->delete();
+        auth()->user()->tokens()->delete();
+
         return response(['Message' => 'Success, Goodbye!']);
     }
 }

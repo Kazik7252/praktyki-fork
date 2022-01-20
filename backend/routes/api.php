@@ -24,14 +24,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // TODO         ----------------USERS----------------
 Route::post('/user/register', [UserController::class, 'registerUser']);
 
-// Porównywanie ### hasła do tego w bazie danych przy logowaniu.
-// Illuminate/Support/Facades/Hash::check('password'), $"username"->"password");
-// Zwraca true or false
-
 // Logowanie i wylogowywanie użytkownika
 Route::get('/user/login', [UserController::class, 'login']);
 
-Route::post('/user/logout', [UserController::class, 'logout']);
+Route::post('/user/logout', [UserController::class, 'logout'])
+    ->middleware('auth:sanctum');
 
 
 //              ----------------TOPICS----------------
@@ -48,7 +45,8 @@ Route::get('/topics/by-user-id/{user_id}', [TopicController::class, 'readTopicsB
 Route::delete('/topics/by-topic-id/{topic_id}', [TopicController::class, 'deleteTopic']);
 
 //Przyjmuje parametry title, user_id
-Route::post('/topics', [TopicController::class, 'createTopic']);
+Route::post('/topics', [TopicController::class, 'createTopic'])
+    ->middleware('auth:sanctum');
 
 
 //              ----------------POSTS----------------
@@ -57,4 +55,5 @@ Route::get('/posts/by-post-id/{post_id}', [PostController::class, 'readPost']);
 Route::delete('/posts/by-post-id/{post_id}', [PostController::class, 'deletePost']);
 
 // Przyjmuje parametry body, user_id, topic_id
-Route::post('/posts', [PostController::class, 'createPost']);
+Route::post('/posts', [PostController::class, 'createPost'])
+    ->middleware('auth:sanctum');
