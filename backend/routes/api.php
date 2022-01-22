@@ -42,7 +42,8 @@ Route::get('/topics/by-post-id/{post_id}', [TopicController::class, 'readTopicBy
 // Zwraca dane użytkownika oraz informacje o jego wszystkich topicach
 Route::get('/topics/by-user-id/{user_id}', [TopicController::class, 'readTopicsByUserId']);
 
-Route::delete('/topics/by-topic-id/{topic_id}', [TopicController::class, 'deleteTopic']);
+Route::delete('/topics/by-topic-id/{topic_id}', [TopicController::class, 'deleteTopic'])
+    ->middleware('auth:sanctum');
 
 //Przyjmuje parametry title, user_id
 Route::post('/topics', [TopicController::class, 'createTopic'])
@@ -52,7 +53,8 @@ Route::post('/topics', [TopicController::class, 'createTopic'])
 //              ----------------POSTS----------------
 Route::get('/posts/by-post-id/{post_id}', [PostController::class, 'readPost']);
 
-Route::delete('/posts/by-post-id/{post_id}', [PostController::class, 'deletePost']);
+Route::delete('/posts/by-post-id/{post_id}', [PostController::class, 'deletePost'])
+    ->middleware('auth:sanctum');
 
 // Przyjmuje parametry body, user_id, topic_id
 Route::post('/posts', [PostController::class, 'createPost'])
