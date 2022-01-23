@@ -1,0 +1,184 @@
+<script>
+
+</script>
+
+<main>
+
+    <body class="parallax">
+        <nav  id="topnav">
+         <img id="logo" src="Logo.png" alt="logo Promote.gg" />
+                    <a class="nav-link" href="#/topics"><button class="button">Forum</button></a>
+                    <a id="login" class="nav-link" href="#/login"><button class="button">Logowanie</button></a>
+        </nav>
+            <div class="div" style="background-color: rgb(13, 54, 58, 0.9);">
+                <span class="textleft">
+                Promote.gg pomaga nowym graczom z całego świata.
+                </span>
+                <span class="textleft2">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, error neque doloremque suscipit quia odit assumenda aliquid eaque quasi quae sed, iusto qui enim, aut blanditiis et adipisci minus. Sed?
+                </span>
+            </div>
+            <div class="div" style="background-color: rgb(17, 33, 32, 0.9);">
+                <span class="textleft">
+                Promote.gg pomaga nowym graczom z całego świata.                
+                </span>
+                <span class="textleft2">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, error neque doloremque suscipit quia odit assumenda aliquid eaque quasi quae sed, iusto qui enim, aut blanditiis et adipisci minus. Sed?
+                </span>
+            </div>
+            <div class="div" style="background-color: rgb(15, 29, 29, 0.9356);">
+                <span class="textright">
+                Promote.gg pomaga nowym graczom z całego świata.               
+                </span>>
+                <span class="textright2">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, error neque doloremque suscipit quia odit assumenda aliquid eaque quasi quae sed, iusto qui enim, aut blanditiis et adipisci minus. Sed?
+                </span>
+            </div>
+            <div class="div" style="background-color: rgb(17, 33, 32, 0.9);">
+                <span class="textleft">
+                Promote.gg pomaga nowym graczom z całego świata.          
+                </span>
+                <span class="textleft2">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, error neque doloremque suscipit quia odit assumenda aliquid eaque quasi quae sed, iusto qui enim, aut blanditiis et adipisci minus. Sed?
+                </span>
+            </div>
+            <div class="div" style="background-color: rgb(13, 54, 58, 0.9);">
+
+                <span class="join">
+                Dołącz do nas!
+                
+                    <form>
+                        <label for="username">Username:</label><br>
+                        <input type="text" id="username" name="usename"><br>
+                        <label for="E-mail">E-mail</label><br>
+                        <input type="text" id="e-mail" name="e-mail">
+                        <label for="password">Password:</label><br>
+                        <input type="text" id="password" name="password">
+                        <label for="confirmpassword">Confirm Password:</label><br>
+                        <input type="text" id="confirmpassword" name="confirmpassword">
+                  </form>
+                </span>
+            </div>
+    </body>
+</main>
+
+<style>
+
+    .div {
+        width: 100%;
+        height: 880px;
+        color: rgb(174, 145, 75);
+    }
+
+    #topnav {
+        width: 100%;
+        background-color:rgb(54, 44, 23, 0.9);
+        font-family: Arial, sans-serif;
+        font-size: 15px;
+    }   
+
+    .nav-link {
+        display: inline-block;
+        width: 200px;
+        font-size: 30px;
+        vertical-align:200%;
+
+        color: White;
+        text-align: center;
+
+        text-decoration: none;
+    }
+
+    .button {
+        background-color:rgb(174, 145, 75);
+        border-radius: 10%;
+        color:white;
+        border-color: rgb(174, 145, 75);
+    }
+
+    #logo {
+        width: 130px;
+        display: inline-block;
+        padding-top: 60px;
+    	text-align: left;
+		padding: 1em;
+		max-width: 100px;
+		margin: 50 auto;
+        height: 100px;
+    }
+
+    #login {
+        position: absolute;
+        top: 40px;
+        right: 25px;
+    }
+
+    .textleft {
+        float:left;
+        height: 220px;
+        width: 960px;
+        font-size: 50px;
+        margin-top: 100px;
+        margin-left: 180px;
+    }
+
+    .textright {
+        float:right;
+        height: 220px;
+        width: 960px;
+        font-size: 50px;
+        margin-top: 100px;
+        margin-right: 121px;
+    }
+
+    .textleft2 {
+        float:left;
+        height: 220px;
+        width: 960px;
+        font-size: 40px;
+        margin-bottom: 280px;
+        margin-left: 180px;
+    }
+
+    .textright2 {
+        float:right;
+        height: 220px;
+        width: 960px;
+        font-size: 40px;
+        margin-bottom: 280px;
+        margin-right: 121px;
+    }
+
+    form {
+        background-color: rgb(15, 29, 29, 0.75);
+        font-size: 30px;
+        margin-top: 100px;
+        margin-left: 180px;
+        margin-right: 180px;
+        text-align: center;
+    }
+
+    input {
+        color:darkgreen;
+    }
+
+    .join {
+        padding-left: 500px;
+        font-size: 50px;
+    }
+
+    .parallax {
+        /* The image used */
+         background-image: url("https://a-static.besthdwallpaper.com/league-of-legends-lol-spirit-blossom-yasuo-z-yone-tapeta-2560x1600-64061_7.jpg");
+
+        /* Set a specific height */
+         min-height: 1080px;
+
+        /* Create the parallax scrolling effect */
+         background-attachment: fixed;
+         background-position: center;
+         background-repeat: no-repeat;
+         background-size: cover;
+    }
+
+</style>

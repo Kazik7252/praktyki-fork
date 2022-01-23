@@ -47,15 +47,15 @@ class UserController extends Controller
                 'token' => $token
             ];
             return response($response, 200);
-            } else {
-                return response(['Message' => 'Invalid credentials'] ,401);
-            }
+        } else {
+            return response(['Message' => 'Invalid credentials'] ,401);
+        }
     }
 
     public function logout()
     {
         auth()->user()->tokens()->delete();
 
-        return response(['Message' => 'Success, Goodbye!']);
+        return response(['Message' => 'Success, Goodbye!'], 200);
     }
 }
