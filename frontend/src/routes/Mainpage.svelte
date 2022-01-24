@@ -21,7 +21,7 @@
             </div>
             <div class="div" style="background-color: rgb(17, 33, 32, 0.9);">
                 <span class="textleft">
-                Promote.gg pomaga nowym graczom z całego świata.                
+                Tutaj znajdziesz wszystkie informacje potrzebne do przyjemnej gry.          
                 </span>
                 <span class="textleft2">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, error neque doloremque suscipit quia odit assumenda aliquid eaque quasi quae sed, iusto qui enim, aut blanditiis et adipisci minus. Sed?
@@ -30,7 +30,7 @@
             </div>
             <div class="div" style="background-color: rgb(15, 29, 29, 0.9356);">
                 <span class="textright">
-                Promote.gg pomaga nowym graczom z całego świata.               
+                Tu spotkasz graczy o podobnych umiejętnościach chętnych do wspólnej gry.               
                 </span>
                 <span class="textright2">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, error neque doloremque suscipit quia odit assumenda aliquid eaque quasi quae sed, iusto qui enim, aut blanditiis et adipisci minus. Sed?
@@ -39,7 +39,7 @@
             </div>
             <div class="div" style="background-color: rgb(17, 33, 32, 0.9);">
                 <span class="textleft">
-                Promote.gg pomaga nowym graczom z całego świata.          
+                    Możesz tu zapisać własne buildy i udostępniać je innym graczom.          
                 </span>
                 <span class="textleft2">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, error neque doloremque suscipit quia odit assumenda aliquid eaque quasi quae sed, iusto qui enim, aut blanditiis et adipisci minus. Sed?
@@ -185,9 +185,8 @@
     }
 
     .join {
-        padding-left: 500px;
+        padding-left: 772px;
         font-size: 50px;
-
     }
 
     .parallax {
