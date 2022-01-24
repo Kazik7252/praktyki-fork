@@ -8,8 +8,11 @@
 	async function doPost () {
             try {
             const result = await fetch(url, {
-                mode: 'no-cors',
+                // mode: 'no-cors',
                 method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                 },
                 })
             const response = result.json();
             console.log(response);
