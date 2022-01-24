@@ -1,7 +1,7 @@
 <script>
 import { onMount } from "svelte";
 
-    const riot_key = 'RGAPI-a9b570b5-43e6-4d10-bb74-a5e31a094470';
+    const riot_key = '###';
 
     let username = 'krixlionpl';
     let url = 'https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/'+username;
