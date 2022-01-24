@@ -2,11 +2,17 @@
 
 </script>
 
+<svelte:head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caudex&display=swap" rel="stylesheet">
+</svelte:head>
+
 <main>
 
     <body class="parallax">
         <nav  id="topnav">
-         <img id="logo" src="Logo.png" alt="logo Promote.gg" />
+         <img id="logo" src="Promote3.png" alt="logo Promote.gg" />
                     <a class="nav-link" href="#/topics"><button class="button">Forum</button></a>
                     <a id="login" class="nav-link" href="#/login"><button class="button">Logowanie</button></a>
         </nav>
@@ -17,7 +23,7 @@
                 <span class="textleft2">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, error neque doloremque suscipit quia odit assumenda aliquid eaque quasi quae sed, iusto qui enim, aut blanditiis et adipisci minus. Sed?
                 </span>
-                <img class="garen" src="Logo.png" alt="Logo Promote.gg" />
+                <img class="garen" src="Promote3.png" alt="Logo Promote.gg" />
             </div>
             <div class="div" style="background-color: rgb(17, 33, 32, 0.9);">
                 <span class="textleft">
@@ -48,9 +54,9 @@
             </div>
             <div class="div" style="background-color: rgb(13, 54, 58, 0.9);">
 
-                <span class="join">
+                <h3 id="join">
                 Dołącz do nas!
-                </span>
+                </h3>
                     <form>
                         <label for="username">Nazwa użytkownika:</label><br>
                         <input type="text" id="username" name="usename"><br>
@@ -64,6 +70,12 @@
                   </form>
 
             </div>
+            <div id="footer">
+                <h3 class="stopka">
+                    &copy; 2022 Copyright Promote.gg
+                </h3>
+            </div>
+        
     </body>
 </main>
 
@@ -110,6 +122,7 @@
 		max-width: 100px;
 		margin: 50 auto;
         height: 100px;
+        padding-left: 40px;
     }
 
     #login {
@@ -174,7 +187,7 @@
     form {
         background-color: rgb(15, 29, 29, 0.75);
         font-size: 30px;
-        margin-top: 100px;
+        margin-top: 50px;
         margin-left: 180px;
         margin-right: 180px;
         text-align: center;
@@ -184,9 +197,26 @@
         color:rgb(71, 71, 71);
     }
 
-    .join {
-        padding-left: 772px;
+    #join {
+        text-align: center;
         font-size: 50px;
+        vertical-align: bottom;
+        padding-top: 50px;
+    }
+
+    #footer {
+        width: 100%;
+        height: 200px;
+        background-color: rgb(15, 29, 29, 0.95)
+    }
+
+    .stopka {
+        font-size: 24px;
+        color: rgb(174, 145, 75);
+
+        padding-top: 85px;
+        text-align: center;
+
     }
 
     .parallax {
@@ -201,6 +231,10 @@
          background-position: center;
          background-repeat: no-repeat;
          background-size: cover;
+    }
+
+    * {
+        font-family: 'Caudex', serif;
     }
 
 </style>
