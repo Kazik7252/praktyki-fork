@@ -36,6 +36,7 @@
                     <a class="nav-link" href="#/topics"><button class="button">Forum</button></a>
                     <a id="login" class="nav-link" href="#/login"><button class="button">Logowanie</button></a>
         </nav>
+        <div id="placeholder"></div>
             <div class="div" style="background-color: rgb(13, 54, 58, 0.9);">
                 <span class="textleft">
                 Promote.gg pomaga nowym graczom z całego świata.
@@ -107,11 +108,19 @@
         color: rgb(174, 145, 75);
     }
 
+    #placeholder {
+        width: 100%;
+        height: 115px;
+    }
+
     #topnav {
         width: 100%;
         background-color:rgb(54, 44, 23, 0.9);
         font-family: Arial, sans-serif;
         font-size: 15px;
+        position:fixed;
+        top: 0;
+        right: 0;
     }   
 
     .nav-link {
