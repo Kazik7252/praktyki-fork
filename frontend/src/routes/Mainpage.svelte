@@ -17,6 +17,7 @@
                 <span class="textleft2">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, error neque doloremque suscipit quia odit assumenda aliquid eaque quasi quae sed, iusto qui enim, aut blanditiis et adipisci minus. Sed?
                 </span>
+                <img class="garen" src="Logo.png" alt="Logo Promote.gg" />
             </div>
             <div class="div" style="background-color: rgb(17, 33, 32, 0.9);">
                 <span class="textleft">
@@ -25,14 +26,16 @@
                 <span class="textleft2">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, error neque doloremque suscipit quia odit assumenda aliquid eaque quasi quae sed, iusto qui enim, aut blanditiis et adipisci minus. Sed?
                 </span>
+                <img class=garen src="garen2.png" alt="Render Garena" />
             </div>
             <div class="div" style="background-color: rgb(15, 29, 29, 0.9356);">
                 <span class="textright">
                 Promote.gg pomaga nowym graczom z całego świata.               
-                </span>>
+                </span>
                 <span class="textright2">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, error neque doloremque suscipit quia odit assumenda aliquid eaque quasi quae sed, iusto qui enim, aut blanditiis et adipisci minus. Sed?
                 </span>
+                <img class="draven" src="draven2.png" alt="Render Dravena" />
             </div>
             <div class="div" style="background-color: rgb(17, 33, 32, 0.9);">
                 <span class="textleft">
@@ -41,23 +44,25 @@
                 <span class="textleft2">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, error neque doloremque suscipit quia odit assumenda aliquid eaque quasi quae sed, iusto qui enim, aut blanditiis et adipisci minus. Sed?
                 </span>
+                <img class="sylas" src="sylas2.png" alt="Render Sylasa" />
             </div>
             <div class="div" style="background-color: rgb(13, 54, 58, 0.9);">
 
                 <span class="join">
                 Dołącz do nas!
-                
+                </span>
                     <form>
-                        <label for="username">Username:</label><br>
+                        <label for="username">Nazwa użytkownika:</label><br>
                         <input type="text" id="username" name="usename"><br>
                         <label for="E-mail">E-mail</label><br>
                         <input type="text" id="e-mail" name="e-mail">
-                        <label for="password">Password:</label><br>
-                        <input type="text" id="password" name="password">
-                        <label for="confirmpassword">Confirm Password:</label><br>
-                        <input type="text" id="confirmpassword" name="confirmpassword">
+                        <label for="password">Hasło:</label><br>
+                        <input type="password" id="password" name="password">
+                        <label for="confirmpassword">Powtórz Hasło:</label><br>
+                        <input type="password" id="confirmpassword" name="confirmpassword"> <br/>
+                        <button class="button">Załóż Konto </button>
                   </form>
-                </span>
+
             </div>
     </body>
 </main>
@@ -113,6 +118,23 @@
         right: 25px;
     }
 
+    .garen {
+        margin-top: 50px;
+        margin-left: 150px;
+    }
+
+    .draven {
+        margin-top: 30px;
+        margin-left: 100px;
+        width: 550px;
+    }
+
+    .sylas {
+        width: 550px;
+        margin-top: 35px;
+        margin-left: 75px;
+    }
+
     .textleft {
         float:left;
         height: 220px;
@@ -159,12 +181,13 @@
     }
 
     input {
-        color:darkgreen;
+        color:rgb(71, 71, 71);
     }
 
     .join {
         padding-left: 500px;
         font-size: 50px;
+
     }
 
     .parallax {
