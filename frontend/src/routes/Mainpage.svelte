@@ -1,5 +1,22 @@
 <script>
+    let username = '';
+	let email = '';
+    let password = '';
+    let password_confirmation = '';
+	let url = 'http://localhost:8899/api/user/register?username='+username+'&password='+password+'&password_confirmation='+password_confirmation+'&email='+email;
 
+	async function doPost () {
+            try {
+            const result = await fetch(url, {
+                mode: 'no-cors',
+                method: 'POST',
+                })
+            const response = result.json();
+            console.log(response);
+        } catch(error) {
+            console.log(error);
+        }
+    }
 </script>
 
 <svelte:head>
@@ -59,14 +76,14 @@
                 </h3>
                     <form>
                         <label for="username">Nazwa użytkownika:</label><br>
-                        <input type="text" id="username" name="usename"><br>
+                        <input bind:value={username} type="text" id="username" name="usename"><br>
                         <label for="E-mail">E-mail</label><br>
-                        <input type="text" id="e-mail" name="e-mail">
+                        <input bind:value={email} type="text" id="e-mail" name="e-mail">
                         <label for="password">Hasło:</label><br>
-                        <input type="password" id="password" name="password">
-                        <label for="confirmpassword">Powtórz Hasło:</label><br>
-                        <input type="password" id="confirmpassword" name="confirmpassword"> <br/>
-                        <button class="button">Załóż Konto </button>
+                        <input bind:value={password} type="password" id="password" name="password">
+                        <label  for="confirmpassword">Powtórz Hasło:</label><br>
+                        <input bind:value={password_confirmation} type="password" id="confirmpassword" name="confirmpassword"> <br/>
+                        <button type="button" on:click={doPost} class="button">Załóż Konto </button>
                   </form>
 
             </div>

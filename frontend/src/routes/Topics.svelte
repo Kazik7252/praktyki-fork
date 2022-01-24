@@ -30,9 +30,6 @@
 			<div class="author">
 				<h4>Author: {topic.topic_author.username}</h4>
 			</div>
-			<!-- <div class="content">
-				<p>{topic.body}</p>
-			</div> -->
 		</Card>
 	</div>
 	{/each}
@@ -65,6 +62,10 @@
 		color: #AE914B;
 	}
 
+	a:hover {
+		color: #9D803A;
+	}
+
 
 	/* Styling card contents */
 	.title{
@@ -78,8 +79,4 @@
 		font-weight: 200;
 		margin: 0.5em;
 	}
-	/* .content{
-		margin: 0.5em;
-		text-align: left;
-	} */
 </style>

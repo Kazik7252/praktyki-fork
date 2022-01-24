@@ -7,7 +7,7 @@ import { onMount } from "svelte";
     let posts = [];
     let topic = [];
 
-    let url = "http://localhost:8899/api/topics/by-topic-id/"+params.id;
+    let url = 'http://localhost:8899/api/topics/by-topic-id/'+params.id;
     
     onMount(async () => {
         try{
@@ -22,7 +22,7 @@ import { onMount } from "svelte";
 		}
 	});
 </script>
-
+<div id="container">
 {#each topic as topic}
     <Card>
         <div class="title">
@@ -44,8 +44,13 @@ import { onMount } from "svelte";
         </div>
     </Card>
 {/each}
-
+</div>
 <style>
+    #container {
+		background-color: #362C17;
+        width: 100%;
+        height: 100%;
+    }
 	.author{
 		text-align: left;
         color: #AE914B;
