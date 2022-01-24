@@ -114,13 +114,14 @@
     }
 
     #topnav {
-        width: 100%;
-        background-color:rgb(54, 44, 23, 0.9);
+        width: 1871px;
+        background-color:rgb(54, 44, 23, 0.95);
         font-family: Arial, sans-serif;
         font-size: 15px;
         position:fixed;
         top: 0;
-        right: 0;
+
+        left: 16px;
     }   
 
     .nav-link {
