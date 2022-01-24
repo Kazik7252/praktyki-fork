@@ -1,7 +1,7 @@
 <script>
 import { onMount } from "svelte";
 
-    const riot_key = 'RGAPI-101efe84-aaf5-4bf3-ab70-f5621d2c7140';
+    const riot_key = 'RGAPI-a9b570b5-43e6-4d10-bb74-a5e31a094470';
 
     let username = 'krixlionpl';
     let url = 'https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/'+username;
@@ -9,11 +9,11 @@ import { onMount } from "svelte";
     onMount(async () => {
 		try{
 		const response = await fetch(url, {
-            mode: 'cors',
+            method: 'GET',
             headers: {
                 'Access-Control-Request-Method': "GET",
                 'Content-Type': 'application/json',
-                "X-Riot-Token": "RGAPI-101efe84-aaf5-4bf3-ab70-f5621d2c7140",
+                "X-Riot-Token": riot_key,
             }
         });
 		const data = await response.json();
@@ -24,8 +24,3 @@ import { onMount } from "svelte";
 	});
 
 </script>
-<div>
-    <!-- {#each data as data}
-        <h1>Username: {data.username}</h1>
-    {/each} -->
-</div>
