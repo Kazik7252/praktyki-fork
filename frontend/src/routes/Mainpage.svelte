@@ -3,17 +3,22 @@
 	let email = '';
     let password = '';
     let password_confirmation = '';
-	let url = 'http://localhost:8899/api/user/register?username='+username+'&password='+password+'&password_confirmation='+password_confirmation+'&email='+email;
-
-	async function doPost () {
+	let url = 'http://localhost:8899/api/user/register';
+	
+    async function doPost () {
             try {
             const result = await fetch(url, {
-                // mode: 'no-cors',
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
-                 },
-                })
+                },
+                body: JSON.stringify({
+                    "username": username,
+                    "email": email,
+	                "password": password,
+	                "password_confirmation": password_confirmation
+                }), 
+            })
             const response = result.json();
             console.log(response);
         } catch(error) {

@@ -37,7 +37,9 @@ class UserController extends Controller
             'password'  => 'required'
         ]);
 
+
         $user = User::where('username', $request->username)->first();
+
 
         if (Hash::check($request->password, $user->password)) {
             $token = $user->createToken('kekw')->plainTextToken;

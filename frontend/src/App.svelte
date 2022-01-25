@@ -25,9 +25,3 @@ import Mainpage from "./routes/Mainpage.svelte";
 	
 	
 </main>
-
-<style>
-	main {
-		background-color: #362C17;
-	}
-</style>

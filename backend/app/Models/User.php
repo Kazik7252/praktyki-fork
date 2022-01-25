@@ -49,4 +49,19 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'user_role');
+    }
+
+    public function isAdministrator()
+    {
+        return $this->roles()->where('username', 'Administrator')->exists();
+    }
+
+    public function isOwner()
+    {
+        // TODO
+    }
 }

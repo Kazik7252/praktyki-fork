@@ -49,11 +49,16 @@ class TopicController extends Controller
 
         $post = Post::where('id', $request->post_id)->with('motherTopic');
 
+        // $topic = Topic::where('id','!=',0)->posts()->where('id', $request->topic_id)->first();
+
+        // dd($topic);
+        // PO UKOŃCZENIU ZAKOMENTOWAĆ LUB USUNĄĆ RETURN 404
+        return response(['Message' => 'This API is not released yet'], 404);
+
         if (!$post->first())
             return response(['Message' => "This post doesn't exist"],204);
 
-        // return response(['posts' => $post->get()], 200);
-        return response(['Message' => 'This API is not released yet'], 404);
+        return response(['posts' => $post->get()], 200);
     }
 
     public function readTopicsByUserId(Request $request)
@@ -73,7 +78,7 @@ class TopicController extends Controller
 
         Post::where('topic_id', $request->topic_id)->delete();
 
-        return response(['message' => 'The topic has been successfully deleted.'], 200);
+        return response(['message' => 'The topic has been successfully deleted.'], 204);
     }
 
     public function createTopic(Request $request)

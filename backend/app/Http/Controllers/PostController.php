@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    //TODO Post Methods
     public function readPost(Request $request)
     {
         $post = Post::where('id', $request->post_id)->with('postAuthor', 'motherTopic');
@@ -19,7 +18,7 @@ class PostController extends Controller
     {
         $post = Post::where('id', $request->post_id)->delete();
 
-        return response(['message' => 'The post has been successfully deleted'], 200);
+        return response(['message' => 'The post has been successfully deleted'], 204);
     }
 
     public function createPost(Request $request)
