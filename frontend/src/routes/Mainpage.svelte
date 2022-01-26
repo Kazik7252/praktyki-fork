@@ -96,11 +96,7 @@
                   </form>
 
             </div>
-            <div id="footer">
-                <h3 class="stopka">
-                    &copy; 2022 Copyright Promote.gg
-                </h3>
-            </div>
+ 
         
     </body>
 </main>
@@ -258,7 +254,6 @@
 
         padding-top: 85px;
         text-align: center;
-
     }
 
     .parallax {
