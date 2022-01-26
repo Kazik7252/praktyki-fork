@@ -51,10 +51,7 @@ class UserController extends Controller
                 'user' => $user,
                 'token' => $token
             ];
-            return response([
-                'User' => $response,
-                'message' => 'Login succesfull'
-            ], 200);
+            return response($response, 200);
         } else {
             return response(['Message' => 'Invalid credentials'] ,401);
         }

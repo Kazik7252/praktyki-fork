@@ -22,8 +22,10 @@ use Illuminate\Support\Facades\Route;
 //              ----------------USERS----------------
 Route::post('/user/register', [UserController::class, 'registerUser']);
 
+
 // Logowanie użytkownika
 Route::post('/user/login', [UserController::class, 'login']);
+
 
 // Sprawdzanie jaki użytkownik jest obecnie zalogowany, przyjmuje Bearer Token
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -32,6 +34,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/user/logout', [UserController::class, 'logout'])
     ->middleware('auth:sanctum');
+
 
 
 //              ----------------TOPICS----------------
@@ -54,6 +57,8 @@ Route::post('/topics', [TopicController::class, 'createTopic'])
     ->middleware('auth:sanctum');
 
 
+
+
 //              ----------------POSTS----------------
 Route::get('/posts/by-post-id/{post_id}', [PostController::class, 'readPost']);
 
@@ -63,3 +68,5 @@ Route::delete('/posts/by-post-id/{post_id}', [PostController::class, 'deletePost
 // Przyjmuje parametry body, user_id, topic_id
 Route::post('/posts', [PostController::class, 'createPost'])
     ->middleware('auth:sanctum');
+
+
