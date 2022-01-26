@@ -27,7 +27,10 @@ class UserController extends Controller
         ]);
 
 
-        return response(['user' => $user],201);
+        return response([
+            'user' => $user,
+            'message' => 'User has been succesfully registered'
+        ], 201);
     }
 
     public function login(Request $request)
@@ -37,7 +40,9 @@ class UserController extends Controller
             'password'  => 'required'
         ]);
 
+
         $user = User::where('username', $request->username)->first();
+
 
         if (Hash::check($request->password, $user->password)) {
             $token = $user->createToken('kekw')->plainTextToken;
@@ -46,7 +51,10 @@ class UserController extends Controller
                 'user' => $user,
                 'token' => $token
             ];
-            return response($response, 200);
+            return response([
+                'User' => $response,
+                'message' => 'Login succesfull'
+            ], 200);
         } else {
             return response(['Message' => 'Invalid credentials'] ,401);
         }
@@ -56,6 +64,6 @@ class UserController extends Controller
     {
         auth()->user()->tokens()->delete();
 
-        return response(['Message' => 'Success, Goodbye!'], 200);
+        return response(['Message' => 'Logout succesfull'], 200);
     }
 }

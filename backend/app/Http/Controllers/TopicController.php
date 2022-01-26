@@ -49,11 +49,16 @@ class TopicController extends Controller
 
         $post = Post::where('id', $request->post_id)->with('motherTopic');
 
+        // $topic = Topic::where('id','!=',0)->posts()->where('id', $request->topic_id)->first();
+
+        // dd($topic);
+        // PO UKOŃCZENIU ZAKOMENTOWAĆ LUB USUNĄĆ RETURN 404
+        return response(['Message' => 'This API is not released yet'], 404);
+
         if (!$post->first())
             return response(['Message' => "This post doesn't exist"],204);
 
-        // return response(['posts' => $post->get()], 200);
-        return response(['Message' => 'This API is not released yet'], 404);
+        return response(['posts' => $post->get()], 200);
     }
 
     public function readTopicsByUserId(Request $request)
@@ -68,16 +73,26 @@ class TopicController extends Controller
 
     public function deleteTopic(Request $request)
     {
-        // Pobiera rekord z tabeli Topics z id podanym w ścieżce
-        Topic::where('id', $request->topic_id)->delete();
+        $user = auth()->user();
 
-        Post::where('topic_id', $request->topic_id)->delete();
+        $topic = Topic::where('id', $request->topic_id)->first();
 
-        return response(['message' => 'The topic has been successfully deleted.'], 200);
+        // Sprawdza czy zalogowany user ma uprawnienia do operacji (TopicPolicy.php)
+        if ($user->can('delete', $topic)) {
+            $topic->delete();
+
+            return response(['message' => 'The topic has been successfully deleted.'], 204);
+        } else {
+            return response(['message' => 'Permission denied'], 403);
+        }
     }
 
     public function createTopic(Request $request)
     {
+        $user = auth()->user();
+
+        if($user->can('create'))
+            return response(['message' => 'Permission denied'], 403);
 
         //Sprawdzanie czy podane dane spełniają wymagania
         $request->validate([
@@ -86,11 +101,14 @@ class TopicController extends Controller
         ]);
 
         // Wpisuje do tabeli dane podane przez klienta
-        Topic::create([
+        $topic = Topic::create([
             'title' => $request->title,
             'user_id' => $request->user_id,
         ]);
 
-        return response(['message' => 'The topic has been successfully created.'], 201);
+        return response([
+            'Topic' => $topic,
+            'message' => 'The topic has been successfully created.'
+        ], 201);
     }
 }

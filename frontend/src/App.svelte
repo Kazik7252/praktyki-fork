@@ -6,6 +6,7 @@ import Home from "./routes/Home.svelte";
 import Topic from "./routes/Topic.svelte";
 import User from "./routes/User.svelte";
 import Mainpage from "./routes/Mainpage.svelte";
+import Login from "./routes/Login.svelte";
 
 	let routes = {
 		"/": Mainpage,
@@ -13,6 +14,7 @@ import Mainpage from "./routes/Mainpage.svelte";
 		"/topics": Topics,
 		"/topic/:id": Topic,
 		"/user": User,
+		"/login": Login,
 
 		"*": NotFound
 	}
@@ -25,9 +27,3 @@ import Mainpage from "./routes/Mainpage.svelte";
 	
 	
 </main>
-
-<style>
-	main {
-		background-color: #362C17;
-	}
-</style>

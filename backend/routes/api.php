@@ -3,6 +3,8 @@
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\PostController;
+use App\Http\Middleware\HandlePostRequest;
+use Illuminate\Auth\Middleware\Authorize;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,15 +19,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//              ----------------USERS----------------
+Route::post('/user/register', [UserController::class, 'registerUser']);
+
+// Logowanie użytkownika
+Route::post('/user/login', [UserController::class, 'login']);
+
+// Sprawdzanie jaki użytkownik jest obecnie zalogowany, przyjmuje Bearer Token
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-// TODO         ----------------USERS----------------
-Route::post('/user/register', [UserController::class, 'registerUser']);
-
-// Logowanie i wylogowywanie użytkownika
-Route::get('/user/login', [UserController::class, 'login']);
 
 Route::post('/user/logout', [UserController::class, 'logout'])
     ->middleware('auth:sanctum');
@@ -37,6 +40,7 @@ Route::get('/topics', [TopicController::class, 'listTopics']);
 Route::get('/topics/by-topic-id/{topic_id}', [TopicController::class, 'readTopicByTopicId']);
 
 // Zwraca dane o poście oraz o topicu w którym się znajduje
+// Endpoint nie został ukończony, na tę chwilę zwraca 404
 Route::get('/topics/by-post-id/{post_id}', [TopicController::class, 'readTopicByPostId']);
 
 // Zwraca dane użytkownika oraz informacje o jego wszystkich topicach

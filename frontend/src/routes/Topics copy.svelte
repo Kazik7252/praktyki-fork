@@ -22,17 +22,15 @@
 </svelte:head>
 
 <body class="parallax">
-<div id="placeholder"></div>
 <div id="container">
-
+	<div id="placeholder"></div>
 	<nav  id="topnav">
         <a href="/"><img id="logo" src="Promote3.png" alt="logo Promote.gg" /> </a> 
         <a id="forum" class="nav-link" href="#/topics"><button class="button">Forum</button></a>
         <a id="login" class="nav-link" href="#/login"><button class="button">Logowanie</button></a>
     </nav>
 
-	<div id="placeholder2"></div>
-	<div class="card" style>
+
 	{#each topics as topic}
 	<div>
 		<Card>
@@ -45,31 +43,25 @@
 		</Card>
 	</div>
 	{/each}
-	</div>
-			<div id="footer">
-				<h3 class="stopka">
-					&copy; 2022 Copyright Promote.gg
-				</h3>
-			</div>
+
+<div id="footer">
+	<h3 class="stopka">
+		&copy; 2022 Copyright Promote.gg
+	</h3>
+</div>
 </div>
 </body>
 
 
 
 <style>
-
 	#container {
 		background-color:rgb(13, 54, 58, 0.9);
 	}
 
-	#placeholder {
+    #placeholder {
         width: 100%;
-        height: 132px;
-    }
-
-	#placeholder2 {
-        width: 100%;
-        height: 1px;
+        height: 200px;
     }
 
     #topnav {
@@ -86,10 +78,8 @@
         width: 250px;
         font-size: 30px;
         vertical-align:200%;
-
         color: White;
         text-align: center;
-
         text-decoration: none;
     }
 
@@ -110,24 +100,17 @@
 		margin: 50 auto;
         height: 100px;
         padding-left: 40px;
-		font-size: 15px;
     }
 
     #forum {
         height: 65;
-		font-size: 30px;
     }
 
     #login {
         position: absolute;
-        top: 30px;
+        top: 40px;
         right: 25px;
-		font-size: 30px;
     }
-
-	.card {
-		margin-top:100px;
-	}
 
 	@media (min-width: 640px) {
 		#container {
@@ -145,17 +128,33 @@
 		text-decoration: none;
 	}
 
-    #footer {
+
+	/* Styling card contents */
+	.title{
+		color: black;
+		font-weight: bold;
+		margin: 0.5em;
+		font-size: 20px;
+	}
+	.author{
+		text-align: left;
+		color: #555;
+		font-weight: 200;
+		margin: 0.7em;
+	}
+
+	#footer {
         width: 100%;
         height: 200px;
         background-color: rgb(15, 29, 29, 0.95)
     }
 
-    .stopka {
+	.stopka {
         font-size: 24px;
         color: rgb(174, 145, 75);
         padding-top: 85px;
         text-align: center;
+
     }
 
 	.parallax {

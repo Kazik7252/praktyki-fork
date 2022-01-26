@@ -27,6 +27,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'email_verified_at'
     ];
 
     /**
@@ -49,4 +50,20 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'user_role');
+    }
+
+    public function isAdmin()
+    {
+        return $this->roles()->where('user_id', 'Admin')->exists();
+    }
+
+    public function isBanned()
+    {
+        return $this->roles()->where('user_id', 'Banned')->exists();
+    }
+
 }
