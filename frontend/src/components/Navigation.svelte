@@ -2,6 +2,8 @@
 	import { onMount } from "svelte";
 	import Card from '../components/Card.svelte';
 
+	let title = '';
+
 	let topics = [];
 	onMount(async () => {
 		try{
@@ -21,53 +23,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Caudex&display=swap" rel="stylesheet">
 </svelte:head>
 
-<body class="parallax">
-<div id="container">
-	<div id="placeholder"></div>
 	<nav  id="topnav">
         <a href="/"><img id="logo" src="Promote3.png" alt="logo Promote.gg" /> </a> 
         <a id="forum" class="nav-link" href="#/topics"><button class="button">Forum</button></a>
+        <a id="user" class="nav-link" href="#/user"><button class="button">Twój Profil</button></a>
         <a id="login" class="nav-link" href="#/login"><button class="button">Logowanie</button></a>
     </nav>
 
 
-	{#each topics as topic}
-	<div>
-		<Card>
-			<div class="title">
-				<h3><a href="#/topic/{topic.id}">{topic.title}</a></h3>
-			</div>
-			<div class="author">
-				<h4>Author: {topic.topic_author.username}</h4>
-			</div>
-		</Card>
-	</div>
-	{/each}
-
-<div id="footer">
-	<h3 class="stopka">
-		&copy; 2022 Copyright Promote.gg
-	</h3>
-</div>
-</div>
-</body>
-
-
-
 <style>
-	#container {
-		background-color:rgb(13, 54, 58, 0.9);
-	}
-
-    #placeholder {
-        width: 100%;
-        height: 200px;
-    }
 
     #topnav {
         width: 100%;
         background-color:rgb(54, 44, 23, 0.95);
-        font-family: Arial, sans-serif;
         font-size: 15px;
         position:fixed;
         top: 0;
@@ -78,8 +46,10 @@
         width: 250px;
         font-size: 30px;
         vertical-align:200%;
+        font-family: 'Caudex', serif;
         color: White;
         text-align: center;
+
         text-decoration: none;
     }
 
@@ -100,24 +70,28 @@
 		margin: 50 auto;
         height: 100px;
         padding-left: 40px;
+		font-size: 15px;
     }
 
     #forum {
         height: 65;
+		font-size: 30px;
     }
 
     #login {
         position: absolute;
-        top: 40px;
+        top: 30px;
         right: 25px;
+		font-size: 30px;
     }
 
-	@media (min-width: 640px) {
-		#container {
-			max-width: none;
-		}
-	}
-	
+    #user {
+        position: absolute;
+        top: 30px;
+        right: 250px;
+		font-size: 30px;
+    }
+
 	a {
 		color: #AE914B;
 	}
@@ -128,51 +102,9 @@
 		text-decoration: none;
 	}
 
-
-	/* Styling card contents */
-	.title{
-		color: black;
-		font-weight: bold;
-		margin: 0.5em;
-		font-size: 20px;
-	}
-	.author{
-		text-align: left;
-		color: #555;
-		font-weight: 200;
-		margin: 0.7em;
-	}
-
-	#footer {
-        width: 100%;
-        height: 200px;
-        background-color: rgb(15, 29, 29, 0.95)
-    }
-
-	.stopka {
-        font-size: 24px;
-        color: rgb(174, 145, 75);
-        padding-top: 85px;
-        text-align: center;
-
-    }
-
-	.parallax {
-        /* The image used */
-         background-image: url("https://i.pinimg.com/originals/d0/46/b9/d046b993370991a73a01e274b690a39b.jpg");
-
-        /* Set a specific height */
-		min-height: 1080px;
-
-        /* Create the parallax scrolling effect */
-         background-attachment: fixed;
-         background-position: center;
-         background-repeat: no-repeat;
-         background-size: cover;
-    }
-
-	* {
+    * {
         font-family: 'Caudex', serif;
     }
 
 </style>
+

@@ -1,6 +1,9 @@
 <script>
 	import { onMount } from "svelte";
 	import Card from '../components/Card.svelte';
+	import Navigation from '../components/Navigation.svelte';
+
+	let title = '';
 
 	let topics = [];
 	onMount(async () => {
@@ -25,14 +28,24 @@
 <div id="placeholder"></div>
 <div id="container">
 
-	<nav  id="topnav">
-        <a href="/"><img id="logo" src="Promote3.png" alt="logo Promote.gg" /> </a> 
-        <a id="forum" class="nav-link" href="#/topics"><button class="button">Forum</button></a>
-        <a id="login" class="nav-link" href="#/login"><button class="button">Logowanie</button></a>
-    </nav>
-
+	<Navigation> </Navigation>
 	<div id="placeholder2"></div>
 	<div class="card" style>
+
+		<div class="div">
+
+			<h3 id="join">
+			Załóż swój temat
+			</h3>
+				<form>
+					<label for="title">Temat:</label><br>
+					<input bind:value={title} type="text" id="title" name="title"><br>
+					<button type="button" class="button">Dodaj temat</button>
+			  </form>
+
+		</div>
+
+
 	{#each topics as topic}
 	<div>
 		<Card>
@@ -59,6 +72,7 @@
 <style>
 
 	#container {
+		min-height: 1080px;
 		background-color:rgb(13, 54, 58, 0.9);
 	}
 
@@ -72,57 +86,11 @@
         height: 1px;
     }
 
-    #topnav {
-        width: 100%;
-        background-color:rgb(54, 44, 23, 0.95);
-        font-family: Arial, sans-serif;
-        font-size: 15px;
-        position:fixed;
-        top: 0;
-    }   
-
-    .nav-link {
-        display: inline-block;
-        width: 250px;
-        font-size: 30px;
-        vertical-align:200%;
-
-        color: White;
-        text-align: center;
-
-        text-decoration: none;
-    }
-
     .button {
         background-color:rgb(174, 145, 75);
         border-radius: 10%;
         color:white;
         border-color: rgb(174, 145, 75);
-    }
-
-    #logo {
-        width: 130px;
-        display: inline-block;
-        padding-top: 60px;
-    	text-align: left;
-		padding: 1em;
-		max-width: 100px;
-		margin: 50 auto;
-        height: 100px;
-        padding-left: 40px;
-		font-size: 15px;
-    }
-
-    #forum {
-        height: 65;
-		font-size: 30px;
-    }
-
-    #login {
-        position: absolute;
-        top: 30px;
-        right: 25px;
-		font-size: 30px;
     }
 
 	.card {
@@ -145,10 +113,36 @@
 		text-decoration: none;
 	}
 
+    form {
+        background-color: rgb(15, 29, 29, 0.75);
+        font-size: 30px;
+        margin-top: 50px;
+        margin-left: 180px;
+        margin-right: 180px;
+        text-align: center;
+		color: #AE914B;
+    }
+
+    input {
+        color:rgb(71, 71, 71);
+		width: 85%;
+ 		padding: 12px 20px;
+	 	margin: 8px 0;
+	 	box-sizing: border-box;
+    }
+
+    #join {
+		color: #AE914B;
+        text-align: center;
+        font-size: 50px;
+        vertical-align: bottom;
+        padding-top: 50px;
+    }
+
     #footer {
         width: 100%;
         height: 200px;
-        background-color: rgb(15, 29, 29, 0.95)
+        background-color: rgb(15, 29, 29, 0.9)
     }
 
     .stopka {

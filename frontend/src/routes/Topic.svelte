@@ -1,11 +1,13 @@
 <script>
 import Card from "../components/Card.svelte";
 import { onMount } from "svelte";
+import Navigation from '../components/Navigation.svelte';
 
     export let params = {};
 
     let posts = [];
     let topic = [];
+    let body = '';
 
     let url = 'http://localhost:8899/api/topics/by-topic-id/'+params.id;
     
@@ -33,17 +35,14 @@ import { onMount } from "svelte";
     <div id="placeholder"></div>
     <div id="container">
     
-        <nav  id="topnav">
-            <a href="/"><img id="logo" src="Promote3.png" alt="logo Promote.gg" /> </a> 
-            <a id="forum" class="nav-link" href="#/topics"><button class="button">Forum</button></a>
-            <a id="login" class="nav-link" href="#/login"><button class="button">Logowanie</button></a>
-        </nav>
+        <Navigation></Navigation>
     
         <div id="placeholder2"></div>
         <div class="card" style>
 
-        <div id="container">
+
         {#each topic as topic}
+        <div>
             <Card>
                 <div class="title">
                     <h4>Topic: {topic.title}</h4>
@@ -52,9 +51,11 @@ import { onMount } from "svelte";
                     <h6>Topic author: {topic.topic_author.username}</h6>
                 </div>
             </Card>
+        </div>
         {/each}
 
         {#each posts as post}
+        <div>
             <Card>
                 <div class="author">
                     <h4>Author: {post.post_author.username}</h4>
@@ -63,16 +64,46 @@ import { onMount } from "svelte";
                     <p>{post.body}</p>
                 </div>
             </Card>
+        </div> 
         {/each}
         </div>
+
+        <div class="div">
+
+            <h3 id="join">
+            Dodaj swój post
+            </h3>
+                <form>
+                    <label for="body">Treść postu</label><br>
+                    <textarea rows="8" cols="50" id="body"> </textarea> <br>
+                    <button type="button" class="button">Dodaj post</button>
+              </form>
+        
+        </div>
+        <div id="placeholder3">
+
+        </div>
+</div>
+
+<div id="footer">
+    <h3 class="stopka">
+        &copy; 2022 Copyright Promote.gg
+    </h3>
+</div>
 
 </body>
 
 <style>
+
+    .card {
+		margin-top:100px;
+	}
+
     #container {
         width: 100%;
         height: 100%;
         background-color:rgb(13, 54, 58, 0.9);
+        min-height: 1080px;
     }
 
     #placeholder {
@@ -82,26 +113,12 @@ import { onMount } from "svelte";
 
 	#placeholder2 {
         width: 100%;
-        height: 1px;
+        height: 100px;
     }
 
-    #topnav {
+	#placeholder3 {
         width: 100%;
-        background-color:rgb(54, 44, 23, 0.95);
-        font-family: Arial, sans-serif;
-        font-size: 15px;
-        position:fixed;
-        top: 0;
-    }   
-
-    .nav-link {
-        display: inline-block;
-        width: 250px;
-        font-size: 30px;
-        vertical-align:200%;
-        color: White;
-        text-align: center;
-        text-decoration: none;
+        height: 100px;
     }
 
     .button {
@@ -109,31 +126,6 @@ import { onMount } from "svelte";
         border-radius: 10%;
         color:white;
         border-color: rgb(174, 145, 75);
-    }
-
-    #logo {
-        width: 130px;
-        display: inline-block;
-        padding-top: 60px;
-    	text-align: left;
-		padding: 1em;
-		max-width: 100px;
-		margin: 50 auto;
-        height: 100px;
-        padding-left: 40px;
-		font-size: 15px;
-    }
-
-    #forum {
-        height: 65;
-		font-size: 30px;
-    }
-
-    #login {
-        position: absolute;
-        top: 30px;
-        right: 25px;
-		font-size: 30px;
     }
 
 	.author{
@@ -153,6 +145,48 @@ import { onMount } from "svelte";
         color: #AE914B;
         font-weight: bold;
         margin: 0.5em
+    }
+
+    form {
+        background-color: rgb(15, 29, 29, 0.75);
+        font-size: 30px;
+        margin-top: 50px;
+        margin-left: 180px;
+        margin-right: 180px;
+        text-align: center;
+		color: #AE914B;
+        /* margin-bottom: 500px; */
+    }
+
+    #body {
+        color:rgb(71, 71, 71);
+		width: 85%;
+ 		padding: 12px 20px;
+	 	margin: 8px 0;
+	 	box-sizing: border-box;
+        resize: none;
+        font-size: 19px;
+    }
+
+    #join {
+		color: #AE914B;
+        text-align: center;
+        font-size: 50px;
+        vertical-align: bottom;
+        padding-top: 50px;
+    }
+
+    #footer {
+        width: 100%;
+        height: 200px;
+        background-color: rgb(15, 29, 29, 0.95)
+    }
+
+    .stopka {
+        font-size: 24px;
+        color: rgb(174, 145, 75);
+        padding-top: 85px;
+        text-align: center;
     }
 
 	.parallax {

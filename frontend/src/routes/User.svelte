@@ -1,5 +1,6 @@
 <script>
 import { onMount } from "svelte";
+import Navigation from '../components/Navigation.svelte';
 
     const riot_key = '#';
 
@@ -31,11 +32,8 @@ import { onMount } from "svelte";
 
 <body class="parallax" >
 
-    <nav  id="topnav">
-        <a href="/"> <img id="logo" src="Promote3.png" alt="logo Promote.gg" /> </a>
-                   <a id="forum" class="nav-link" href="#/topics"><button class="button">Forum</button></a>
-                   <a id="login" class="nav-link" href="#/login"><button class="button">Logowanie</button></a>
-       </nav>
+   <Navigation></Navigation>
+
        <div id="placeholder"></div>
 
             <div class="div" style="background-color:rgb(13, 54, 58, 0.9)">
@@ -60,58 +58,6 @@ import { onMount } from "svelte";
     #placeholder {
         width: 100%;
         height: 132px;
-    }
-
-    #topnav {
-        width: 100%;
-        background-color:rgb(54, 44, 23, 0.95);
-        font-family: Arial, sans-serif;
-        font-size: 15px;
-        position:fixed;
-        top: 0;
-
-
-    }   
-
-    .nav-link {
-        display: inline-block;
-        width: 250px;
-        font-size: 30px;
-        vertical-align:200%;
-
-        color: White;
-        text-align: center;
-
-        text-decoration: none;
-    }
-
-    .button {
-        background-color:rgb(174, 145, 75);
-        border-radius: 10%;
-        color:white;
-        border-color: rgb(174, 145, 75);
-    }
-
-    #logo {
-        width: 130px;
-        display: inline-block;
-        padding-top: 60px;
-    	text-align: left;
-		padding: 1em;
-		max-width: 100px;
-		margin: 50 auto;
-        height: 100px;
-        padding-left: 40px;
-    }
-
-    #forum {
-        top: 15px;
-    }
-
-    #login {
-        position: absolute;
-        top: 30px;
-        right: 25px;
     }
 
     #footer {
