@@ -158,6 +158,20 @@
         text-align: center;
     }
 
+	.title{
+		color: black;
+		font-weight: bold;
+		margin: 0.5em;
+		font-size: 20px;
+        text-align: center;
+	}
+	.author{
+		text-align: left;
+		color: #555;
+		font-weight: 200;
+		margin: 0.7em;
+	}
+
 	.parallax {
         /* The image used */
          background-image: url("https://i.pinimg.com/originals/d0/46/b9/d046b993370991a73a01e274b690a39b.jpg");
