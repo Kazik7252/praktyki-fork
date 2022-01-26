@@ -1,13 +1,23 @@
 <script>
 import Card from "../components/Card.svelte";
 import { onMount } from "svelte";
+import UserData from "../UserStore";
 
     export let params = {};
+    let token = '';
+    let user_id = '';
+    const topic_id = params.id;
+    let title = '';
+
+    UserData.subscribe(data => {
+        token = data.token;
+        user_id = data.user_id;
+    })
 
     let posts = [];
     let topic = [];
 
-    let url = 'http://localhost:8899/api/topics/by-topic-id/'+params.id;
+    let url = 'http://localhost:8899/api/topics/by-topic-id/'+topic_id;
     
     onMount(async () => {
         try{
@@ -21,6 +31,24 @@ import { onMount } from "svelte";
 			console.log(error)
 		}
 	});
+
+
+    async function doPost() {
+        fetch('', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+            "Content-Type": "application/json",    
+            Accept: 'application/json',
+            Authentication: 'Bearer Token',
+            },
+            body: JSON.stringify({
+                    title: title,
+                    user_id: user_id,
+            })
+        })
+        .then(resp => resp.json())
+    }
 </script>
 
 <svelte:head>

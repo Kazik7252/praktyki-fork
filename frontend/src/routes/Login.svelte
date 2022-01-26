@@ -1,11 +1,13 @@
 <script>
+import UserData from '../UserStore.js'
+
     let username = "";
     let password = "";
     let url = "http://localhost:8899/api/user/login";
 
-    async function doPost() {
+    async function login() {
         try {
-            const response = await fetch(url, {
+                let response = await fetch(url, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -14,11 +16,14 @@
                     username: username,
                     password: password,
                 }),
+            }).then(response => response.json());
+
+            let token = response.token;
+            let user_id = response.user.id;
+            
+            UserData.update(currentUserData => {
+                return [token, user_id];
             });
-            // const data = response.json();
-            let data = response.json();
-            console.log(Promise['PromiseResult']);
-            // console.log(data.result);
         } catch (error) {
             console.log(error);
         }
@@ -26,7 +31,6 @@
 
     
 </script>
-
 <svelte:head>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -69,7 +73,7 @@
                 id="password"
                 name="password"
             /><br />
-            <button type="button" on:click={doPost} class="button"
+            <button type="button" on:click={login} class="button"
                 >Zaloguj się
             </button>
         </form>

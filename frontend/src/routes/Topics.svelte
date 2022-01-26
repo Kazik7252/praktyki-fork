@@ -1,6 +1,16 @@
 <script>
+	import UserData from "../UserStore";
 	import { onMount } from "svelte";
 	import Card from '../components/Card.svelte';
+
+	let token = '';
+    let user_id = '';
+	let body = '';
+
+	UserData.subscribe(data => {
+        token = data.token;
+		user_id = data.user_id;
+    })
 
 	let topics = [];
 	onMount(async () => {
@@ -13,6 +23,24 @@
 			console.log(error)
 		}
 	});
+
+	async function doPost() {
+        fetch('', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+            "Content-Type": "application/json",    
+            Accept: 'application/json',
+            Authentication: 'Bearer Token',
+            },
+            body: JSON.stringify({
+                    body: body,
+                    user_id: user_id,
+            })
+		})
+	   .then(resp => resp.json())
+	}
+
 </script>
 
 <svelte:head>

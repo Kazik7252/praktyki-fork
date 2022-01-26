@@ -1,5 +1,14 @@
 <script>
+import UserData from "../UserStore";
 import { onMount } from "svelte";
+
+    let user_id = '';
+    let token = '';
+
+    UserData.subscribe(data => {
+        token = data.token;
+        user_id = data.user_id;
+    })
 
     const riot_key = '#';
 
@@ -9,6 +18,21 @@ import { onMount } from "svelte";
     onMount(async () => {
 		try{
 		const response = await fetch(url, {
+            method: 'GET',
+            // headers: {
+            //     "X-Riot-Token": riot_key,
+            // }
+        });
+		const data = await response.json();
+		console.log(data.name);
+		} catch(error){
+			console.log(error)
+		}
+	});
+
+    onMount(async () => {
+		try{
+		const response = await fetch("localhost:8899/api/topics/by-user-id/"+user_id, {
             method: 'GET',
             // headers: {
             //     "X-Riot-Token": riot_key,
