@@ -22,11 +22,10 @@ class DatabaseSeeder extends Seeder
         Topic::factory()->create();
         Post::factory(6)->create();
         Role::create([
-            'role_name' => 'Admin'
+            'role_name' => 'Admin',
         ]);
-
         Role::create([
-            'role_name' => 'Owner'
+            'role_name' => 'Banned'
         ]);
     }
 }

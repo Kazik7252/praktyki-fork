@@ -27,6 +27,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'email_verified_at'
     ];
 
     /**
@@ -55,13 +56,14 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class, 'user_role');
     }
 
-    public function isAdministrator()
+    public function isAdmin()
     {
-        return $this->roles()->where('username', 'Administrator')->exists();
+        return $this->roles()->where('user_id', 'Admin')->exists();
     }
 
-    public function isOwner()
+    public function isBanned()
     {
-        // TODO
+        return $this->roles()->where('user_id', 'Banned')->exists();
     }
+
 }

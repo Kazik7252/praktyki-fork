@@ -16,13 +16,27 @@ class PostController extends Controller
 
     public function deletePost(Request $request)
     {
-        $post = Post::where('id', $request->post_id)->delete();
+        $user = auth()->user();
 
-        return response(['message' => 'The post has been successfully deleted'], 204);
+        $post = Post::where('id', $request->topic_id)->first();
+
+        // Sprawdza czy zalogowany user ma uprawnienia do operacji (PostPolicy.php)
+        if ($user->can('delete', $post)) {
+            $post->delete();
+
+            return response(['message' => 'The post has been successfully deleted.'], 204);
+        } else {
+            return response(['message' => 'Permission denied'], 403);
+        }
     }
 
     public function createPost(Request $request)
     {
+        $user = auth()->user();
+
+        if($user->can('create'))
+            return response(['message' => 'Permission denied'], 403);
+
         $request->validate([
             'body' => 'required|string',
             'user_id' => 'required|integer',
@@ -35,6 +49,9 @@ class PostController extends Controller
             'topic_id' => $request->topic_id
         ]);
 
-        return response(['message' => 'The post has been successfully created'], 201);
+        return response([
+            'Post' => $post,
+            'message' => 'The post has been successfully created'
+        ], 201);
     }
 }

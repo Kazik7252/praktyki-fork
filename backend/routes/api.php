@@ -4,6 +4,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\PostController;
 use App\Http\Middleware\HandlePostRequest;
+use Illuminate\Auth\Middleware\Authorize;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 //              ----------------USERS----------------
-Route::middleware('post:handle')->post('/user/register', [UserController::class, 'registerUser']);
+Route::post('/user/register', [UserController::class, 'registerUser']);
 
 // Logowanie użytkownika
 Route::post('/user/login', [UserController::class, 'login']);
