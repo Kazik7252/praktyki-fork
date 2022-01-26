@@ -33,7 +33,7 @@
     <body class="parallax">
         <nav  id="topnav">
          <img id="logo" src="Promote3.png" alt="logo Promote.gg" />
-                    <a id="forum" class="nav-link" href="#/topics"><button class="button">Forum</button></a>
+                    <a class="nav-link" href="#/topics"><button class="button">Forum</button></a>
                     <a id="login" class="nav-link" href="#/login"><button class="button">Logowanie</button></a>
         </nav>
         <div id="placeholder"></div>
@@ -112,7 +112,7 @@
 
     #placeholder {
         width: 100%;
-        height: 132px;
+        height: 115px;
     }
 
     #topnav {
@@ -155,10 +155,6 @@
 		margin: 50 auto;
         height: 100px;
         padding-left: 40px;
-    }
-
-    #forum {
-        height: 65;
     }
 
     #login {
