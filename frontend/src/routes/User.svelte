@@ -6,7 +6,7 @@ import Navigation from '../components/Navigation.svelte';
 
     const riot_key = '#';
 
-    let username = 'KrixlionPl';
+    let username = 'Drapieżnik2115';
     let summonerLevel = '';
     let url = 'https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/'+username+'?api_key='+riot_key;
 
@@ -59,7 +59,9 @@ import Navigation from '../components/Navigation.svelte';
                 {#if $StoreUserId = null}
                     <h1 id="message">Zaloguj się aby wyświetlić zawartość</h1>
                 {:else}
+
                     <h1 id="naglowek" >Tematy</h1>
+
                     <div class="scrollbox">
                         
                         {#each topics as topic }
@@ -70,11 +72,14 @@ import Navigation from '../components/Navigation.svelte';
                             </Card>
                         {/each}
                     </div>
-
+                    
                     <div id="liga">
+                    <Card>
                         <h1>Twój nick w grze: {username}</h1> <br>
                         <h3>Twój poziom w grze: {summonerLevel}</h3>
+                    </Card>
                     </div>
+                    
                 {/if}
 
             </div>
@@ -90,9 +95,9 @@ import Navigation from '../components/Navigation.svelte';
 
     #naglowek {
         color: rgb(174, 145, 75);
-        font-size: 20px;
-        padding-left: 20px;
-        padding-top: 20px;
+        font-size: 26px;
+        padding-left: 320px;
+        padding-top: 50px;
 }
 
     #message {
@@ -103,7 +108,9 @@ import Navigation from '../components/Navigation.svelte';
     #liga {
         color: rgb(174, 145, 75);
         font-size: 20px;
-        margin-left: 15px;    
+        margin-left: 700px;
+        text-align: center;    
+        padding-top: 17px;
     }
 
     .scrollbox {
