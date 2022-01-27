@@ -56,11 +56,12 @@ import Navigation from '../components/Navigation.svelte';
 
             <div class="div" style="background-color:rgb(13, 54, 58, 0.9)">
                 
-                {#if !$StoreUserId}
+                {#if $StoreUserId = null}
                     <h1 id="message">Zaloguj się aby wyświetlić zawartość</h1>
                 {:else}
+                    <h1 id="naglowek" >Tematy</h1>
                     <div class="scrollbox">
-                        <h1>Tematy</h1>
+                        
                         {#each topics as topic }
                             <Card>
                                 <div class="title">
@@ -87,6 +88,13 @@ import Navigation from '../components/Navigation.svelte';
 
 <style>
 
+    #naglowek {
+        color: rgb(174, 145, 75);
+        font-size: 20px;
+        padding-left: 20px;
+        padding-top: 20px;
+}
+
     #message {
         font-size: 50px;
         color: rgb(174, 145, 75);
@@ -95,22 +103,27 @@ import Navigation from '../components/Navigation.svelte';
     #liga {
         color: rgb(174, 145, 75);
         font-size: 20px;
-        padding-top: 20px;
         margin-left: 15px;    
     }
 
     .scrollbox {
         padding-top: 20px;
         padding-left: 15px;
-        overflow: auto;
-        width: 500px;
+        margin-right: 20px;
+        overflow: scroll;
+        overflow-x: hidden;
+        width: 700px;
         text-align: left;
         color: #ae914b;
         font-weight: 200;
         margin: 0.5em;
+        height: 400px;
         float: left;
-        min-height: 200px;
         
+    }
+
+    .scrollbox::-webkit-scrollbar {
+        display: none;
     }
 
     .div {
