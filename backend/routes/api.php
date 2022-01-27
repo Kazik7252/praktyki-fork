@@ -70,3 +70,4 @@ Route::post('/posts', [PostController::class, 'createPost'])
     ->middleware('auth:sanctum');
 
 
+

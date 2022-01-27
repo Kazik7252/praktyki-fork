@@ -1,14 +1,17 @@
 <script>
-import UserData from '../UserStore.js'
+import { StoreToken } from "../stores/TokenStore.js";
+import { StoreUserId } from "../stores/UserIdStore.js";
+import Navigation from '../components/Navigation.svelte';
+
 
     let username = "";
     let password = "";
     let url = "http://localhost:8899/api/user/login";
 
-    async function login() {
-        try {
-                let response = await fetch(url, {
-                method: "POST",
+    async function login () {
+            try {
+            const response = await fetch(url, {
+                method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -18,12 +21,9 @@ import UserData from '../UserStore.js'
                 }),
             }).then(response => response.json());
 
-            let token = response.token;
-            let user_id = response.user.id;
-            
-            UserData.update(currentUserData => {
-                return [token, user_id];
-            });
+            $StoreToken = response.token;
+            $StoreUserId = response.user.id;
+            console.log($StoreToken);
         } catch (error) {
             console.log(error);
         }
@@ -41,47 +41,30 @@ import UserData from '../UserStore.js'
 </svelte:head>
 
 <body class="parallax">
-    <nav id="topnav">
-        <a href="/"
-            ><img id="logo" src="Promote3.png" alt="logo Promote.gg" />
-        </a>
-        <a id="forum" class="nav-link" href="#/topics"
-            ><button class="button">Forum</button></a
-        >
-        <a id="login" class="nav-link" href="#/login"
-            ><button class="button">Logowanie</button></a
-        >
-    </nav>
-    <div id="placeholder" />
 
-    <div class="div" style="background-color: rgb(13, 54, 58, 0.9);">
-        <h3 id="join">
-            Logowanie
-        </h3>
-        <form>
-            <label for="username">Nazwa użytkownika:</label><br />
-            <input
-                bind:value={username}
-                type="text"
-                id="username"
-                name="usename"
-            /><br />
-            <label for="password">Hasło:</label><br />
-            <input
-                bind:value={password}
-                type="password"
-                id="password"
-                name="password"
-            /><br />
-            <button type="button" on:click={login} class="button"
-                >Zaloguj się
-            </button>
-        </form>
-    </div>
+    <Navigation></Navigation>
 
-    <div id="footer">
-        <h3 class="stopka">&copy; 2022 Copyright Promote.gg</h3>
-    </div>
+    <div id="placeholder"></div>
+
+        <div class="div" style="background-color: rgb(13, 54, 58, 0.9);">
+            <h3 id="join">
+                Logowanie
+                </h3>
+                    <form>
+                        <label for="username">Nazwa użytkownika:</label><br>
+                        <input bind:value={username} type="text" id="username" name="usename"><br>
+                        <label for="password">Hasło:</label><br>
+                        <input bind:value={password} type="password" id="password" name="password"><br>
+                        <button type="button" on:click={login} class="button">Zaloguj się </button>
+                  </form>
+        </div>
+
+        <div id="footer">
+            <h3 class="stopka">
+                &copy; 2022 Copyright Promote.gg
+            </h3>
+        </div>
+
 </body>
 
 <style>
@@ -96,54 +79,11 @@ import UserData from '../UserStore.js'
         height: 132px;
     }
 
-    #topnav {
-        width: 100%;
-        background-color: rgb(54, 44, 23, 0.95);
-        font-family: Arial, sans-serif;
-        font-size: 15px;
-        position: fixed;
-        top: 0;
-    }
-
-    .nav-link {
-        display: inline-block;
-        width: 250px;
-        font-size: 30px;
-        vertical-align: 200%;
-
-        color: White;
-        text-align: center;
-
-        text-decoration: none;
-    }
-
     .button {
         background-color: rgb(174, 145, 75);
         border-radius: 10%;
         color: white;
         border-color: rgb(174, 145, 75);
-    }
-
-    #logo {
-        width: 130px;
-        display: inline-block;
-        padding-top: 60px;
-        text-align: left;
-        padding: 1em;
-        max-width: 100px;
-        margin: 50 auto;
-        height: 100px;
-        padding-left: 40px;
-    }
-
-    #forum {
-        height: 65;
-    }
-
-    #login {
-        position: absolute;
-        top: 40px;
-        right: 25px;
     }
 
     form {

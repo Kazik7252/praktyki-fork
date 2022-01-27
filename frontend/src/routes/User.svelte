@@ -1,18 +1,13 @@
 <script>
-import UserData from "../UserStore";
+import Card from "../components/Card.svelte";
+import { StoreUserId } from "../stores/UserIdStore.js";
 import { onMount } from "svelte";
-
-    let user_id = '';
-    let token = '';
-
-    UserData.subscribe(data => {
-        token = data.token;
-        user_id = data.user_id;
-    })
+import Navigation from '../components/Navigation.svelte';
 
     const riot_key = '#';
 
-    let username = 'krixlionpl';
+    let username = 'KrixlionPl';
+    let summonerLevel = '';
     let url = 'https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/'+username+'?api_key='+riot_key;
 
     onMount(async () => {
@@ -24,26 +19,26 @@ import { onMount } from "svelte";
             // }
         });
 		const data = await response.json();
-		console.log(data.name);
+        summonerLevel = data.summonerLevel;
+		console.log(data);
 		} catch(error){
 			console.log(error)
 		}
 	});
 
+    let topics = [];
     onMount(async () => {
-		try{
-		const response = await fetch("localhost:8899/api/topics/by-user-id/"+user_id, {
-            method: 'GET',
-            // headers: {
-            //     "X-Riot-Token": riot_key,
-            // }
-        });
-		const data = await response.json();
-		console.log(data.name);
-		} catch(error){
-			console.log(error)
-		}
-	});
+            try {
+                let resp = await fetch("http://localhost:8899/api/topics/by-user-id/"+$StoreUserId, {
+                })
+                .then((resp) => resp.json());
+                const data = resp.user[0].topics;
+                console.log(data);
+                topics = resp.user[0].topics;
+            } catch (error) {
+                console.log(error);
+            }
+    });
 
 </script>
 
@@ -55,15 +50,32 @@ import { onMount } from "svelte";
 
 <body class="parallax" >
 
-    <nav  id="topnav">
-        <a href="/"> <img id="logo" src="Promote3.png" alt="logo Promote.gg" /> </a>
-                   <a id="forum" class="nav-link" href="#/topics"><button class="button">Forum</button></a>
-                   <a id="login" class="nav-link" href="#/login"><button class="button">Logowanie</button></a>
-       </nav>
+   <Navigation></Navigation>
+
        <div id="placeholder"></div>
 
             <div class="div" style="background-color:rgb(13, 54, 58, 0.9)">
-                <h1>Hello</h1>
+                
+                {#if !$StoreUserId}
+                    <h1 id="message">Zaloguj się aby wyświetlić zawartość</h1>
+                {:else}
+                    <div class="scrollbox">
+                        <h1>Tematy</h1>
+                        {#each topics as topic }
+                            <Card>
+                                <div class="title">
+                                    <h4><a href="#/topic/{topic.id}">Temat: {topic.title}</a></h4>
+                                </div>
+                            </Card>
+                        {/each}
+                    </div>
+
+                    <div id="liga">
+                        <h1>Twój nick w grze: {username}</h1> <br>
+                        <h3>Twój poziom w grze: {summonerLevel}</h3>
+                    </div>
+                {/if}
+
             </div>
 
         <div id="footer">
@@ -74,6 +86,32 @@ import { onMount } from "svelte";
 </body>
 
 <style>
+
+    #message {
+        font-size: 50px;
+        color: rgb(174, 145, 75);
+    }
+
+    #liga {
+        color: rgb(174, 145, 75);
+        font-size: 20px;
+        padding-top: 20px;
+        margin-left: 15px;    
+    }
+
+    .scrollbox {
+        padding-top: 20px;
+        padding-left: 15px;
+        overflow: auto;
+        width: 500px;
+        text-align: left;
+        color: #ae914b;
+        font-weight: 200;
+        margin: 0.5em;
+        float: left;
+        min-height: 200px;
+        
+    }
 
     .div {
         background-color:rgb(13, 54, 58, 0.9);
@@ -86,71 +124,30 @@ import { onMount } from "svelte";
         height: 132px;
     }
 
-    #topnav {
-        width: 100%;
-        background-color:rgb(54, 44, 23, 0.95);
-        font-family: Arial, sans-serif;
-        font-size: 15px;
-        position:fixed;
-        top: 0;
-
-
-    }   
-
-    .nav-link {
-        display: inline-block;
-        width: 250px;
-        font-size: 30px;
-        vertical-align:200%;
-
-        color: White;
-        text-align: center;
-
-        text-decoration: none;
-    }
-
-    .button {
-        background-color:rgb(174, 145, 75);
-        border-radius: 10%;
-        color:white;
-        border-color: rgb(174, 145, 75);
-    }
-
-    #logo {
-        width: 130px;
-        display: inline-block;
-        padding-top: 60px;
-    	text-align: left;
-		padding: 1em;
-		max-width: 100px;
-		margin: 50 auto;
-        height: 100px;
-        padding-left: 40px;
-    }
-
-    #forum {
-        top: 15px;
-    }
-
-    #login {
-        position: absolute;
-        top: 30px;
-        right: 25px;
-    }
-
     #footer {
         width: 100%;
         height: 200px;
-        background-color: rgb(15, 29, 29, 0.95)
+        background-color: rgb(15, 29, 29, 0.95);
+        clear: both;
+
     }
 
     .stopka {
         font-size: 24px;
         color: rgb(174, 145, 75);
-
         padding-top: 85px;
         text-align: center;
     }
+
+    a {
+		color: #AE914B;
+	}
+
+	a:hover {
+		color: #9D803A;
+		font-size: 24px;
+		text-decoration: none;
+	}
 
     .parallax {
         /* The image used */
